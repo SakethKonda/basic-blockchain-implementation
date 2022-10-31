@@ -138,3 +138,23 @@ if __name__ == '__main__':
 	blockchain.mine()
 	# print(blockchain.return_blockchain(2))
 	# print(blockchain.return_data('876304952623'))
+	option=1
+	while(option):
+		print(menu)
+		try:
+			option = int(input())
+		except:
+			print("Invalid entry, exiting")
+			break
+		if(option == 1):
+			print(blockchain.return_blockchain(1))
+		elif(option == 3):
+			uidx = input('Enter Aadhar number of student:')
+			print(blockchain.return_data(uidx))
+		elif(option == 2):
+			data = read_from_user()
+			blockchain.add_new([data])
+			status = blockchain.mine()
+			print(status)
+		elif option!=0:
+			print("Invalid selection. Please choose any option from menu")
