@@ -1,0 +1,4 @@
+name,dob,uidx,acad_yr,course_start,course_end,subject,subject_code,marks,remarks,inst_name,inst_code,fac_code,standard
+Ram,01-11-1998,876304952623,2022-23,01-08-2022,25-11-2022,Foundations of educational technology,ET60062,85.8,None,IIT Kharagpur,WB000001,16AT17483,Btech – 4
+Shyam,20-10-1997,659646546455,2022-23,15-08-2022,12-12-2022,Thermodynamics,CH10064,97.5,None,NIT Warangal,TS170035,15CH43085,Mtech – 1
+Ram,01-11-1998,876304952623,2022-23,01-08-2022,25-11-2022,Digital Signal Processing,EE40064,72,Needs to practise more,IIT Kharagpur,WB000001,10EE14824,Btech – 4

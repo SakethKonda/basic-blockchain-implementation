@@ -4,15 +4,17 @@ import time
 import csv
 
 difficulty = 2
-
 arrow = ' '*30+'|\n'+' '*30+'|\n'+' '*30 + 'v'
 
-def print_block(data):
-	print('-'*60)
+def return_formatted_block(data):
+	res = '-'*60 + '\n'
 	for k,v in data.items():
-		print(f'|{k:<15} : {str(v):<40}|')
-	print('-'*60)
+		res += f'|{k:<15} : {str(v):<40}|\n'
+	res += '-'*60 +'\n'
+	return res
 
+def format_string_for_html(inp):
+	return '</br>'.join(inp.split('\n'))
 
 sample_data = {
 		'name': 'Sample Data', 

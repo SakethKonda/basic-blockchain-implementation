@@ -59,24 +59,38 @@ class Blockchain:
 		self.pending=[]
 
 	def return_data(self,uidx,auth=1):
-		res = []
+		blocks = []
 		for block in self.chain:
 			if(block.uidx == uidx):
-				res.append(Block.return_details(auth))
+				blocks.append(block.return_details(auth))
+		if not len(blocks):
+			return f"No details found for {uidx}"
+
+		index=0
+		res = f'Data for {uidx}\n'
+		while index < len(blocks)-1:
+			res+= return_formatted_block(blocks[index])
+			index += 1
+			res+= arrow+'\n'
+		res += return_formatted_block(blocks[index])
 		return res
 
-	def print_blockchain(self,auth=2):
+	def return_blockchain(self,auth=2):
 		blocks =[]
+		res=''
+		if not len(self.chain):
+			return "Blockchain is empty!"
 		for block in self.chain:
 			blocks.append(block.return_details(auth))
 
 		if(len(blocks)>1):
 			index = 1
 			while index < len(blocks)-1:
-				print_block(blocks[index])
+				res+= return_formatted_block(blocks[index])+'\n'
 				index += 1
-				print(arrow)
-			print_block(blocks[index])
+				res += arrow +'\n'
+			res += return_formatted_block(blocks[index]) +'\n'
+		return res
 
 if __name__ == '__main__':
 	with open('test_data.csv','r') as f:
@@ -86,5 +100,5 @@ if __name__ == '__main__':
 	blockchain = Blockchain()
 	blockchain.add_new(data)
 	blockchain.mine()
-	blockchain.print_blockchain(2)
-	# print(blockchain.return_data(876304952623))
+	blockchain.return_blockchain(2)
+	# print(blockchain.return_data('876304952623'))
