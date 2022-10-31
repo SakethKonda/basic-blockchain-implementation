@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>
+	Add Data
+</h2>
+<form action ="" method = 'post'>
+	<p>
+		{{form.name.label}}<br>
+		{{form.name(size=30)}}
+	</p>
+	<p>
+		{{form.uidx.label}}<br>
+		{{form.uidx(size=30)}}
+	</p>
+	<p>
+		{{form.dob.label}}<br>
+		{{form.dob(size=30)}}
+	</p>
+	<p>
+		{{form.standard.label}}<br>
+		{{form.standard(size=30)}}
+	</p>
+	<p>
+		{{form.acad_yr.label}}<br>
+		{{form.acad_yr(size=30)}}
+	</p>
+	<p>
+		{{form.course_start.label}}<br>
+		{{form.course_start(size=30)}}
+	</p>
+	<p>
+		{{form.course_end.label}}<br>
+		{{form.course_end(size=30)}}
+	</p>
+	<p>
+		{{form.subject.label}}<br>
+		{{form.subject(size=30)}}
+	</p>
+	<p>
+		{{form.subject_code.label}}<br>
+		{{form.subject_code(size=30)}}
+	</p>
+	<p>
+		{{form.marks.label}}<br>
+		{{form.marks(size=30)}}
+	</p>
+	<p>
+		{{form.remarks.label}}<br>
+		{{form.remarks(size=30)}}
+	</p>
+	<p>
+		{{form.inst_name.label}}<br>
+		{{form.inst_name(size=30)}}
+	</p>
+	<p>
+		{{form.inst_code.label}}<br>
+		{{form.inst_code(size=30)}}
+	</p>
+	<p>
+		{{form.fac_code.label}}<br>
+		{{form.fac_code(size=30)}}
+	</p>
+	<p>
+		{{form.submit()}}
+	</p>
+</form>
+
+{% endblock %}
