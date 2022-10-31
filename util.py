@@ -38,5 +38,26 @@ sample_data = {
 		'inst_name': 'Institute Name', 
 		'inst_code': 'Institute Code', 
 		'fac_code': 'Faculty Code',
-		 'standard': 'Student standard'
+		'standard': 'Student standard'
  }
+
+
+properties = sample_data.keys()
+
+def read_from_user():
+	data={}
+	for property in properties:
+		inp = input(f'Enter {property}: ')
+		while not len(inp):
+			print('Invalid entry. Please give some input')
+			inp = input(f'Enter {property}: ')
+		data[property] = inp
+	return data
+
+menu = '''
+Please choose an option from below
+1 Display Blockchain
+2 Add new data
+3 Search for a student
+0 Exit
+'''

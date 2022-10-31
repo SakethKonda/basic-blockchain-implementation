@@ -42,7 +42,7 @@ def search():
 		data = request.form
 		uidx = str(data['uidx'])
 		result = blockchain.return_data(uidx)
-		return render_template('result.html',query = f'Search status : ',status=result)
+		return render_template('search_result.html',query = f'Search status : ',results=result.split('\n'))
 	return render_template('search_input.html',form=form)
 
 with open('test_data.csv','r') as f:
