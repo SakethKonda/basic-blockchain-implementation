@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>
+	Search for Data
+</h2>
+<form action ="" method = 'post'>
+	<p>
+		{{form.uidx.label}}<br>
+		{{form.uidx(size=30)}}
+	</p>
+	<p>
+		{{form.submit()}}
+	</p>
+</form>
+
+{% endblock %}
