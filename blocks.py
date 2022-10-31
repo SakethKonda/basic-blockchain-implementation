@@ -1,7 +1,12 @@
+# Importing required modules
 from util import *
 
 class Block:
+	'''
+	Class which depicts each block of blockchain
+	'''
 	def __init__(self,index,details,timestamp,prev_hash):
+		# Initialising the block
 		self.index = index
 		self.prev_hash = prev_hash
 		self.nonce = 0
@@ -23,10 +28,18 @@ class Block:
 		self.standard = details['standard']
 
 	def compute_hash(self):
+		# Function that returns hash of the block
 		block_string = json.dumps(self.__dict__,sort_keys=True)
 		return sha256(block_string.encode()).hexdigest()
 
 	def return_details(self,auth=1):
+		'''
+		Used to return the block contains based on auth level
+		auth level : Contents
+		0 - Developer mode - Displays most of the contents
+		1 - Admin mode -  Displays the student info including uidx, fac_code
+		2 - Teacher mode - Displays only info related to education like subject, marks, institution
+		'''
 		details = self.__dict__.copy()
 		if(auth == 0):
 			pop_keys = ['timestamp']
@@ -41,7 +54,7 @@ class Block:
 
 
 if __name__ == '__main__':
-	# details = {'name':'Saketh','dob':'05-11-2001','uidx':658547289427}
+	# Sample block to verify the working of above class
 	details = {}
 	details['name'] = 'Ram'
 	details['dob'] = '01-11-1998'
@@ -57,10 +70,6 @@ if __name__ == '__main__':
 	details['inst_code'] = 'WB000001'
 	details['fac_code'] = '16AT17483'
 	details['standard'] = 'Btech - 4'
-	with open('test_data.csv','w') as f:
-		writer = csv.DictWriter(f,fieldnames = details.keys())
-		writer.writeheader()
-		writer.writerow(details)
 	stu = Block(0,details,time.time(),None)
 	auths = [0,1,2]
 	for auth in auths:

@@ -1,9 +1,11 @@
+# Importing required modules
 from flask import Flask, render_template, request
 from util import *
 from blocks import Block
 from blockchain import Blockchain
 from forms import InputData
 
+# Creating Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'fet_grp_3_blockchain'
 
@@ -17,8 +19,9 @@ def show_home():
 
 @app.route('/blockchain')
 def print_blockchain():
+	# Function which displays blockchain
 	result = blockchain.return_blockchain(2)
-	return render_template('data.html',result=result)
+	return render_template('data.html',results=result.split('\n'))
 
 @app.route('/input',methods = ['GET','POST'])
 def input():
@@ -33,6 +36,7 @@ def input():
 
 @app.route('/search',methods=['GET','POST'])
 def search():
+	# Function which searches for queried uidx and returns the result
 	form = InputData()
 	if form.is_submitted():
 		data = request.form

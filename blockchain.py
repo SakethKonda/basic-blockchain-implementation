@@ -1,16 +1,26 @@
+# Importing required modules
 from util import *
 from blocks import Block
 
 
 class Blockchain:
+	'''
+	Class which is used for building blockchain network
+	'''
 	difficulty = difficulty
 	
 	def __init__(self):
+		# Initializing blockchain
 		self.chain = []
 		self.pending=[]		
 		self.init_genesis_block()
 
 	def init_genesis_block(self):
+		'''
+		A function to generate genesis block and appends it to
+        the chain. The block has index 0, previous_hash as 0, and
+        a valid hash.
+		'''
 		genisis_block = Block(0,sample_data,time.time(),'0')
 		genisis_block.hash = genisis_block.compute_hash()
 		self.chain.append(genisis_block)
@@ -20,6 +30,13 @@ class Blockchain:
 		return self.chain[-1]
 
 	def add_block(self,block,proof):
+		"""
+        A function that adds the block to the chain after verification.
+        Verification includes:
+        	- Checking if the proof is valid.
+        	- The previous_hash referred in the block and the hash of latest block
+          	  in the chain match.
+        """
 		prev_hash = self.last_block.hash
 		if prev_hash != block.prev_hash:
 			return False
@@ -31,10 +48,18 @@ class Blockchain:
 		return True
 
 	def is_valid_proof(self,block,block_hash):
+		"""
+        Check if block_hash is valid hash of block and satisfies
+        the difficulty criteria.
+        """
 		return(block_hash.startswith('0'*Blockchain.difficulty) and
 			block_hash == block.compute_hash())
 
 	def proof_of_work(self,block):
+		"""
+        Function that tries different values of nonce to get a hash
+        that satisfies our difficulty criteria.
+        """
 		block.nonce = 0
 		hash = block.compute_hash()
 		while not hash.startswith('0'*Blockchain.difficulty):
@@ -46,6 +71,11 @@ class Blockchain:
 		self.pending.extend(data)
 
 	def mine(self):
+		"""
+        This function serves as an interface to add the pending
+        transactions to the blockchain by adding them to the block
+        and figuring out Proof Of Work.
+        """
 		if not self.pending:
 			return "Error adding data into stack"
 
@@ -60,6 +90,9 @@ class Blockchain:
 		return "Addition successful!"
 
 	def return_data(self,uidx,auth=1):
+		'''
+		Returns the data of particular uidx
+		'''
 		blocks = []
 		for block in self.chain:
 			if(block.uidx == uidx):
@@ -77,6 +110,7 @@ class Blockchain:
 		return res
 
 	def return_blockchain(self,auth=2):
+		# Returns the blockchain
 		blocks =[]
 		res=''
 		if not len(self.chain):
@@ -94,6 +128,7 @@ class Blockchain:
 		return res
 
 if __name__ == '__main__':
+	# Sample data to test the functionality of above class
 	with open('test_data.csv','r') as f:
 		dict_reader = csv.DictReader(f)
 		data = list(dict_reader)
@@ -101,5 +136,5 @@ if __name__ == '__main__':
 	blockchain = Blockchain()
 	blockchain.add_new(data)
 	blockchain.mine()
-	blockchain.return_blockchain(2)
+	# print(blockchain.return_blockchain(2))
 	# print(blockchain.return_data('876304952623'))
