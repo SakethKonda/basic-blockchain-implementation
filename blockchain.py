@@ -47,7 +47,7 @@ class Blockchain:
 
 	def mine(self):
 		if not self.pending:
-			return False
+			return "Error adding data into stack"
 
 		for data in self.pending:
 			last_block = self.last_block
@@ -57,6 +57,7 @@ class Blockchain:
 			self.add_block(new_block,proof)
 
 		self.pending=[]
+		return "Addition successful!"
 
 	def return_data(self,uidx,auth=1):
 		blocks = []
